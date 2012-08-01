@@ -239,7 +239,15 @@ class MigrationShell extends Shell {
 			$options['version'] = (int) $this->args[0];
 
 			$valid = isset($mapping[$options['version']]) || ($options['version'] === 0 && $latestVersion > 0);
-			if (!$valid) {
+			if ($valid) {
+				if ($options['version'] === 0 || empty($mapping[$options['version']]['migrated'])) {
+					$direction = 'up';
+				} else if ($options['version'] <= $latestVersion) {
+					$direction = 'down';
+				} else {
+					$direction = 'up';
+				}
+			} else {
 				$this->out(__d('Migrations', 'Not a valid migration version.'));
 				return $this->_stop();
 			}
