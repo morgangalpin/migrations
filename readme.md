@@ -71,6 +71,10 @@ To simplify the generation of new migration you can do Schema Diffs. To this, yo
 3. Do changes to your database using your favorite tool
 4. Generate a new migration file doing `cake Migrations.migration generate`
 
+*Note*: Generating the cake schema in a plugin requres:
+
+	cake schema generate --plugin Users
+
 ### Manually creating migration files ###
 
 If you prefer full control over your changes, or do not want to mess with sql at all you have the option to
